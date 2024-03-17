@@ -1,0 +1,49 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
+import static org.gradle.api.JavaVersion.VERSION_17
+
+plugins {
+    id 'org.springframework.boot' version "$springVersion"
+    id 'io.spring.dependency-management' version "$dependencyManagementVersion"
+    id 'org.jetbrains.kotlin.jvm' version "$kotlinJvmVersion"
+    id 'org.jetbrains.kotlin.plugin.spring' version "$kotlinSpringPluginVersion"
+    id 'org.jetbrains.kotlin.plugin.jpa' version "$kotlinJpaPluginVersion"
+}
+
+group = 'az.vtb'
+version = "1.0"
+
+java {
+    sourceCompatibility = VERSION_17
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'com.fasterxml.jackson.module:jackson-module-kotlin'
+    implementation 'org.jetbrains.kotlin:kotlin-reflect'
+    implementation 'org.liquibase:liquibase-core'
+    runtimeOnly 'org.postgresql:postgresql'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // Swagger
+    implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: "$swaggerVersion"
+
+    // Logging
+    implementation "io.github.microutils:kotlin-logging-jvm:$loggingVersion"
+}
+
+tasks.withType(KotlinCompile) {
+    kotlinOptions {
+        freeCompilerArgs += '-Xjsr305=strict'
+        jvmTarget = VERSION_17
+    }
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
