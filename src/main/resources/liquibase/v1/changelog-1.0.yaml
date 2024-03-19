@@ -1,0 +1,44 @@
+databaseChangeLog:
+  - changeSet:
+      id: initial ms-card database design
+      author: Abuzar Karimzada
+      changes:
+        - createTable:
+            tableName: cards
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: card_id
+                  type: varchar(25)
+              - column:
+                  name: user_id
+                  type: varchar(25)
+              - column:
+                  name: account_number
+                  type: varchar(40)
+              - column:
+                  name: cardholder_name
+                  type: varchar(100)
+              - column:
+                  name: type
+                  type: varchar(25)
+              - column:
+                  name: expire_date
+                  type: date
+              - column:
+                  name: cvv
+                  type: varchar(3)
+              - column:
+                  name: pan
+                  type: varchar(16)
+              - column:
+                  name: created_at
+                  type: datetime
+              - column:
+                  name: updated_at
+                  type: datetime
