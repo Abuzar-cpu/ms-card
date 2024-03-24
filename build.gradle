@@ -35,6 +35,17 @@ dependencies {
 
     // Logging
     implementation "io.github.microutils:kotlin-logging-jvm:$loggingVersion"
+
+    // Feign
+    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: "$feignVersion"
+
+    // Coroutine✨
+    implementation group: 'org.jetbrains.kotlinx', name: 'kotlinx-coroutines-core', version: "$coroutineVersion", ext: 'pom'
+    implementation group: 'org.jetbrains.kotlinx', name: 'kotlinx-coroutines-core-jvm', version: "$coroutineVersion"
+
+
+
+
 }
 
 tasks.withType(KotlinCompile) {
